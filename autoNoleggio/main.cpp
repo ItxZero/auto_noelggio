@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <string.h>
 
 using namespace std;
 
@@ -24,18 +25,41 @@ void visualizzazioneCatalogo(){
     fin.close();
 }
 
-void ricercaCampo(string cat,string giorni){
+void ricercaCampo(string categ,string giorni){
     ifstream fin("auto.txt", ios::in);
-    int i=0;
+    ofstream fout("autoappoge.txt", ios::out);
+    int i=0,x;
 
     while(!fin.eof()){
         fin>>caratteristicheMacchina.Categoria;
         fin>>caratteristicheMacchina.Marca;
         fin>>caratteristicheMacchina.Modello;
         fin>>caratteristicheMacchina.Colore;
-        fin>>caratteristicheMacchina.Settimana[i];
-        i++;
+        for(int i = 0;i <7;i++)
+            fin>>caratteristicheMacchina.Settimana[i];
+
+
+        if(caratteristicheMacchina.Categoria == categ){
+            cout<<caratteristicheMacchina.Categoria<<" ";
+            cout<<caratteristicheMacchina.Marca<<" ";
+            cout<<caratteristicheMacchina.Modello<<" ";
+            cout<<caratteristicheMacchina.Colore<<" ";
+            for(int i = 0;i <7;i++)
+                cout<<caratteristicheMacchina.Settimana[i]<<" ";
+
+            fout<<caratteristicheMacchina.Categoria<<" ";
+            fout<<caratteristicheMacchina.Marca<<" ";
+            fout<<caratteristicheMacchina.Modello<<" ";
+            fout<<caratteristicheMacchina.Colore<<" ";
+            for(int i = 0;i <7;i++)
+                cout<<caratteristicheMacchina.Settimana[i]<<" ";
+            fout<<"\n";
+        }
+
+    cout<<endl;
     }
+    fin.close();
+    fout.close();
 }
 
 int main()
@@ -44,16 +68,16 @@ int main()
     string categ,giorni;
 
     while(true){
-        cout<<"     Menu       ";
-        cout<<"1- Prenotazione di una macchina";
-        cout<<"2- Stampa del catalogo";
-        cout<<"3- Uscita";
+        cout<<"     Menu       "<<endl;
+        cout<<"1- Prenotazione di una macchina"<<endl;
+        cout<<"2- Stampa del catalogo"<<endl;
+        cout<<"3- Uscita"<<endl;
         cin>>scelta;
         switch(scelta){
             case 1:
-                cout<<"Quale categoria di macchina si vuole prenotare ?";
+                cout<<"Quale categoria di macchina si vuole prenotare ?"<<endl;
                 cin>>categ;
-                cout<<"In quali giorni?";
+                cout<<"In quali giorni?"<<endl;
                 cin>>giorni;
                 ricercaCampo(categ,giorni);
                 break;
