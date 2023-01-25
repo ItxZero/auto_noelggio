@@ -28,7 +28,13 @@ void visualizzazioneCatalogo(){
 void ricercaCampo(string categ,string giorni){
     ifstream fin("auto.txt", ios::in);
     ofstream fout("autoappoge.txt", ios::out);
-    int i=0,x;
+    int i=0,k=0,numero[7];
+    char app;
+
+    while(!giorni == "\0")
+        if(giorni[k] >= '0" && giorni[k] <= "9")
+            app = giorni[k];
+
 
     while(!fin.eof()){
         fin>>caratteristicheMacchina.Categoria;
@@ -39,7 +45,7 @@ void ricercaCampo(string categ,string giorni){
             fin>>caratteristicheMacchina.Settimana[i];
 
 
-        if(caratteristicheMacchina.Categoria == categ){
+        if(caratteristicheMacchina.Categoria == categ && ){
             cout<<caratteristicheMacchina.Categoria<<" ";
             cout<<caratteristicheMacchina.Marca<<" ";
             cout<<caratteristicheMacchina.Modello<<" ";
@@ -54,10 +60,13 @@ void ricercaCampo(string categ,string giorni){
             for(int i = 0;i <7;i++)
                 cout<<caratteristicheMacchina.Settimana[i]<<" ";
             fout<<"\n";
-        }
+        } else
+                cout<<"Auto non disponibile";
 
     cout<<endl;
     }
+
+
     fin.close();
     fout.close();
 }
@@ -77,7 +86,7 @@ int main()
             case 1:
                 cout<<"Quale categoria di macchina si vuole prenotare ?"<<endl;
                 cin>>categ;
-                cout<<"In quali giorni?"<<endl;
+                cout<<"In quali giorni?(es: 3,4)"<<endl;
                 cin>>giorni;
                 ricercaCampo(categ,giorni);
                 break;
