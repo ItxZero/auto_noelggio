@@ -3,10 +3,24 @@
 
 using namespace std;
 
-
+struct autoNoleggio{
+    string Categoria;
+    string Marca;
+    string Modello;
+    string Colore;
+    string Settimana[7];
+}caratteristicheMacchina;
 
 void visualizzazioneCatalogo(){
-
+    ifstream fin("auto.txt", ios::in);
+    if(!fin)
+        cout<<"Errore di apertura file!";
+    string temp;
+    cout<<endl;
+    while(!fin.eof()){
+        getline(fin,temp);
+        cout<<temp<<endl;
+    }
 }
 
 int main()
