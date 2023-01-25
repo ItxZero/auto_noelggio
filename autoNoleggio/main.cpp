@@ -31,10 +31,10 @@ void ricercaCampo(string categ,string giorni){
     int i=0,k=0,numero[7];
     char app;
 
-    while(!giorni == "\0")
-        if(giorni[k] >= '0" && giorni[k] <= "9")
-            app = giorni[k];
-
+    for(int i=0;i<giorni.length-1;i++){
+        if(giorni.at(i) >= '0' && giorni.at(i) <= '9')
+            numero[i] = giorni.at(i);
+    }
 
     while(!fin.eof()){
         fin>>caratteristicheMacchina.Categoria;
@@ -45,7 +45,7 @@ void ricercaCampo(string categ,string giorni){
             fin>>caratteristicheMacchina.Settimana[i];
 
 
-        if(caratteristicheMacchina.Categoria == categ && ){
+        if(caratteristicheMacchina.Categoria == categ ){
             cout<<caratteristicheMacchina.Categoria<<" ";
             cout<<caratteristicheMacchina.Marca<<" ";
             cout<<caratteristicheMacchina.Modello<<" ";
