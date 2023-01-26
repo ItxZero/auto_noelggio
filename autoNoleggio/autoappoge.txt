@@ -1,3 +1,2 @@
-utilitaria FIAT Panda rosso 
-utilitaria KIA Pikanto bronzo 
-utilitaria Peugeot108 verde L 
+lusso Mercedes Classe5 nero L L L L L A A 
+lusso BMW Serie5 grigiometallizzato L L L L L A A 

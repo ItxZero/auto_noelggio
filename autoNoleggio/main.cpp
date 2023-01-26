@@ -25,16 +25,48 @@ void visualizzazioneCatalogo(){
     fin.close();
 }
 
+void modificaNoleggio(int numero[7],int c){
+    ifstream fin("autoappoge.txt", ios::app);
+    bool controllo;
+
+    while(!fin.eof()){
+        controllo = true;
+        fin>>caratteristicheMacchina.Categoria;
+        fin>>caratteristicheMacchina.Marca;
+        fin>>caratteristicheMacchina.Modello;
+        fin>>caratteristicheMacchina.Colore;
+        for(int j = 0; j < 7; j++)
+            fin>>caratteristicheMacchina.Settimana[j];
+
+        for(int i = 0; i < c ; i++){
+            if(caratteristicheMacchina.Settimana[numero[i]] == "A")
+                controllo = false;
+        }
+        if(controllo)
+            cout<<caratteristicheMacchina.Categoria<<" ";
+            cout<<caratteristicheMacchina.Marca<<" ";
+            cout<<caratteristicheMacchina.Modello<<" ";
+            cout<<caratteristicheMacchina.Colore<<" ";
+            for(int i = 0;i <7;i++)
+                cout<<caratteristicheMacchina.Settimana[i]<<" ";
+    }
+}
+
 void ricercaCampo(string categ,string giorni){
     ifstream fin("auto.txt", ios::in);
     ofstream fout("autoappoge.txt", ios::out);
-    int i=0,k=0,numero[7];
+    int i=0,c=0,numero[7];
     char app;
 
-    for(int i=0;i<giorni.length-1;i++){
-        if(giorni.at(i) >= '0' && giorni.at(i) <= '9')
-            numero[i] = giorni.at(i);
+
+    while(giorni[i] != '\0'){
+        if(giorni[i] != ','){
+            numero[c] = (int)giorni[i] - 48;
+            c++;
+        }
+        i++;
     }
+    modificaNoleggio(numero,c);
 
     while(!fin.eof()){
         fin>>caratteristicheMacchina.Categoria;
@@ -43,7 +75,6 @@ void ricercaCampo(string categ,string giorni){
         fin>>caratteristicheMacchina.Colore;
         for(int i = 0;i <7;i++)
             fin>>caratteristicheMacchina.Settimana[i];
-
 
         if(caratteristicheMacchina.Categoria == categ ){
             cout<<caratteristicheMacchina.Categoria<<" ";
@@ -58,10 +89,9 @@ void ricercaCampo(string categ,string giorni){
             fout<<caratteristicheMacchina.Modello<<" ";
             fout<<caratteristicheMacchina.Colore<<" ";
             for(int i = 0;i <7;i++)
-                cout<<caratteristicheMacchina.Settimana[i]<<" ";
+                fout<<caratteristicheMacchina.Settimana[i]<<" ";
             fout<<"\n";
-        } else
-                cout<<"Auto non disponibile";
+        }
 
     cout<<endl;
     }
